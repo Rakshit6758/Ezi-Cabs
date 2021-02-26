@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "251997036783",
+    "firebase_url": "https://cabs-7154d-default-rtdb.firebaseio.com",
+    "project_id": "cabs-7154d",
+    "storage_bucket": "cabs-7154d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:251997036783:android:deffd45e7fee503fbf3b1a",
+        "android_client_info": {
+          "package_name": "com.project.ezi_cabs"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "251997036783-mteit5fiqu5scia97s5mjap6datd5avu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAeZdwrbOTNDZgM-qH2xs_Casw1qEXsfG8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "251997036783-mteit5fiqu5scia97s5mjap6datd5avu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
