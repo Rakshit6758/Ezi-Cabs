@@ -2,6 +2,7 @@ import 'package:connectivity/connectivity.dart';
 import 'package:ezi_cabs/brand_colors.dart';
 import 'package:ezi_cabs/screens/mainpage.dart';
 import 'package:ezi_cabs/screens/registrationpage.dart';
+import 'package:ezi_cabs/widgets/ProgressDialog.dart';
 import 'package:ezi_cabs/widgets/TaxiButton.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -33,11 +34,19 @@ class _LoginPageState extends State<LoginPage> {
 
   void login() async{
 
+    // dialog
+
+    showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (BuildContext context) => ProgressDialog(status: 'Logging...',),
+    );
+
     final User user =(await _auth.signInWithEmailAndPassword(
         email: emailController.text,
         password: passwordController.text,
     ).catchError((ex){
-
+      Navigator.pop(context);
       PlatformException thisEx = ex;
       showSnackBar(thisEx.message);
     })).user;
@@ -46,7 +55,9 @@ class _LoginPageState extends State<LoginPage> {
       // verify login
       DatabaseReference userRef = FirebaseDatabase.instance.reference().child('users/${user.uid}');
       userRef.once().then((DataSnapshot snapshot){
+
         if (snapshot.value != null){
+          Navigator.pop(context);
           Navigator.pushNamedAndRemoveUntil(context, MainPage.id, (route) => false);
 
         }
