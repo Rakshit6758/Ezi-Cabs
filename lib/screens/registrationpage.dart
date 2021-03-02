@@ -207,6 +207,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                               var connectivityResult = await Connectivity().checkConnectivity();
                               if(connectivityResult != ConnectivityResult.mobile && connectivityResult != ConnectivityResult.wifi){
                                 showSnackBar('No Internet connectivity');
+                                return;
                               }
 
                               if(fullNameController.text.length <3){

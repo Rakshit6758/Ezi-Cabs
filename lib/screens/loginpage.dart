@@ -1,13 +1,64 @@
+import 'package:connectivity/connectivity.dart';
 import 'package:ezi_cabs/brand_colors.dart';
+import 'package:ezi_cabs/screens/mainpage.dart';
 import 'package:ezi_cabs/screens/registrationpage.dart';
 import 'package:ezi_cabs/widgets/TaxiButton.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   static const String id = 'login';
+
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final GlobalKey<ScaffoldState> scaffoldkey = new GlobalKey<ScaffoldState>();
+
+  void showSnackBar(String title){
+    final snackbar = SnackBar(
+      content: Text(title, textAlign: TextAlign.center, style: TextStyle(fontSize: 15),),
+    );
+    scaffoldkey.currentState.showSnackBar(snackbar);
+  }
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  var emailController = TextEditingController();
+
+  var passwordController = TextEditingController();
+
+  void login() async{
+
+    final User user =(await _auth.signInWithEmailAndPassword(
+        email: emailController.text,
+        password: passwordController.text,
+    ).catchError((ex){
+
+      PlatformException thisEx = ex;
+      showSnackBar(thisEx.message);
+    })).user;
+
+    if(user != null){
+      // verify login
+      DatabaseReference userRef = FirebaseDatabase.instance.reference().child('users/${user.uid}');
+      userRef.once().then((DataSnapshot snapshot){
+        if (snapshot.value != null){
+          Navigator.pushNamedAndRemoveUntil(context, MainPage.id, (route) => false);
+
+        }
+      });
+    }
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scaffoldkey,
       backgroundColor: Colors.black,
       body: SafeArea(
         child: SingleChildScrollView(
@@ -38,6 +89,7 @@ class LoginPage extends StatelessWidget {
                   child: Column(
                     children: <Widget>[
                       TextField(
+                        controller: emailController,
                         cursorColor: BrandColors.colorMustard,
                         keyboardType: TextInputType.emailAddress,
                         decoration: InputDecoration(
@@ -57,8 +109,8 @@ class LoginPage extends StatelessWidget {
                       SizedBox(height: 15.0,),
 
                       TextField(
+                        controller: passwordController,
                         cursorColor: BrandColors.colorMustard,
-
                         obscureText: true,
                         decoration: InputDecoration(
                             labelText: 'Password',
@@ -79,7 +131,27 @@ class LoginPage extends StatelessWidget {
                       TaxiButton(
                         title: 'LOGIN',
                         color: BrandColors.colorMustard,
-                        onPressed:(){ },
+                        onPressed:() async {
+
+                          var connectivityResult = await Connectivity().checkConnectivity();
+                          if(connectivityResult != ConnectivityResult.mobile && connectivityResult != ConnectivityResult.wifi){
+                            showSnackBar('No Internet connectivity');
+                            return;
+                          }
+
+                          if(!emailController.text.contains('@')){
+                            showSnackBar('Please enter a valid email address');
+                            return;
+                          }
+
+                          if(passwordController.text.length < 8){
+                            showSnackBar('Please enter a valid password');
+                            return;
+                          }
+
+                          login();
+
+                        },
                       )
                     ],
                   ),
