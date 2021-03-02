@@ -5,6 +5,7 @@ import 'package:ezi_cabs/styles/styles.dart';
 import 'package:ezi_cabs/widgets/BrandDivider.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:outline_material_icons/outline_material_icons.dart';
 
@@ -21,6 +22,18 @@ class _MainPageState extends State<MainPage> {
   Completer<GoogleMapController> _controller = Completer();
   GoogleMapController mapController;
   double mapBottomPadding = 0;
+
+  var geoLocator = Geolocator();
+  Position currentPosition;
+
+  void setupPositionLocator() async{
+    Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.bestForNavigation);
+    currentPosition = position;
+
+    LatLng pos = LatLng(position.latitude, position.longitude);
+    CameraPosition cp = new CameraPosition(target: pos, zoom: 14);
+    mapController.animateCamera(CameraUpdate.newCameraPosition(cp));
+  }
 
   static final CameraPosition _kGooglePlex = CameraPosition(
     target: LatLng(37.42796133580664, -122.085749655962),
@@ -106,6 +119,9 @@ class _MainPageState extends State<MainPage> {
             mapType: MapType.normal,
             myLocationButtonEnabled: true,
             initialCameraPosition: _kGooglePlex,
+            myLocationEnabled: true,
+            zoomGesturesEnabled: true,
+            zoomControlsEnabled: true,
             onMapCreated: (GoogleMapController controller){
               _controller.complete(controller);
               mapController = controller;
@@ -113,6 +129,9 @@ class _MainPageState extends State<MainPage> {
               setState(() {
                 mapBottomPadding = 310;
               });
+
+
+              setupPositionLocator();
 
 
 
