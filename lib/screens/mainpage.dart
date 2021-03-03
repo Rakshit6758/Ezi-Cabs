@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:ezi_cabs/brand_colors.dart';
+import 'package:ezi_cabs/screens/searchpage.dart';
 import 'package:ezi_cabs/styles/styles.dart';
 import 'package:ezi_cabs/widgets/BrandDivider.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -207,30 +208,37 @@ class _MainPageState extends State<MainPage> {
 
                     SizedBox(height: 20,),
 
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(8),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black,
-                            blurRadius: 5.0,
-                            spreadRadius: 0.3,
-                            offset: Offset(
-                              0.7,
-                              0.7,
+                    GestureDetector(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(
+                          builder: (context) => SearchPage()
+                        ));
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(8),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black,
+                              blurRadius: 5.0,
+                              spreadRadius: 0.3,
+                              offset: Offset(
+                                0.7,
+                                0.7,
+                              )
                             )
-                          )
-                        ]
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Row(
-                          children: <Widget>[
-                            Icon(Icons.search, color: BrandColors.colorMustard,),
-                            SizedBox(width: 10,),
-                            Text('Search Destination', style: TextStyle(color: Colors.black),),
-                          ],
+                          ]
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Row(
+                            children: <Widget>[
+                              Icon(Icons.search, color: BrandColors.colorMustard,),
+                              SizedBox(width: 10,),
+                              Text('Search Destination', style: TextStyle(color: Colors.black),),
+                            ],
+                          ),
                         ),
                       ),
                     ),
