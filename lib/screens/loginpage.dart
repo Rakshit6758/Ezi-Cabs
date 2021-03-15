@@ -82,7 +82,7 @@ class _LoginPageState extends State<LoginPage> {
                   alignment: Alignment.center,
                   height: 200.0,
                   width: 200.0,
-                  image: AssetImage('images/Ezi.png'),
+                  image: AssetImage('images/EZI2.png'),
                 ),
 
                  SizedBox(height: 30,),

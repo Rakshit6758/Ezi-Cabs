@@ -71,6 +71,10 @@ class _RegistrationPageState extends State<RegistrationPage> {
       newUserRef.set(userMap);
 
       Navigator.pushNamedAndRemoveUntil(context, MainPage.id, (route) => false);
+
+      // User user = FirebaseAuth.instance.currentUser;
+      // if (!user.emailVerified) {
+      //   await user.sendEmailVerification();
     }
 
 
@@ -88,10 +92,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
     // } catch (e) {
     //   print(e);
     // }
-    // User user = FirebaseAuth.instance.currentUser;
-    // if (!user.emailVerified) {
-    //   await user.sendEmailVerification();
+
     // }
+    var hello = fullNameController.text;
 
   }
 
@@ -111,7 +114,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                       alignment: Alignment.center,
                       height: 200.0,
                       width: 200.0,
-                      image: AssetImage('images/Ezi.png'),
+                      image: AssetImage('images/EZI2.png'),
                     ),
 
                     SizedBox(height: 10,),
@@ -275,7 +278,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
           ),
         )
     );
+
   }
 }
-
 

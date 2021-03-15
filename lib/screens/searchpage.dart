@@ -1,5 +1,6 @@
 import 'package:ezi_cabs/brand_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SearchPage extends StatefulWidget {
   @override
@@ -22,7 +23,7 @@ class _SearchPageState extends State<SearchPage> {
           Container(
             height: 240,
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: Colors.black,
               boxShadow: [
                 BoxShadow(
                   color: Colors.black12,
@@ -46,10 +47,10 @@ class _SearchPageState extends State<SearchPage> {
                           onTap: (){
                             Navigator.pop(context);
                           },
-                          child: Icon(Icons.arrow_back)),
+                          child: Icon(Icons.arrow_back, color: BrandColors.colorMustard,)),
                       Center(
                         child: Text('Set Destination',
-                        style: TextStyle(fontSize: 20, fontFamily: 'Brand-Bold')),
+                        style: TextStyle(fontSize: 20, fontFamily: 'Brand-Bold', color: BrandColors.colorMustard)),
                       )
                     ],
                   ),
@@ -58,23 +59,24 @@ class _SearchPageState extends State<SearchPage> {
 
                   Row(
                     children: <Widget>[
-                      Image.asset('images/pickicon.png',height: 16, width: 16),
+                      //Image.asset('images/pickicon.png',height: 16, width: 16),
+                      Icon(FontAwesomeIcons.dotCircle, size:18, color: BrandColors.colorMustard),
 
                       SizedBox(width: 18,),
 
                       Expanded(
                         child: Container(
                           decoration: BoxDecoration(
-                            color: BrandColors.colorLightGrayFair,
+                            color: Colors.white,
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: Padding(
-                            padding: EdgeInsets.all(2.0),
+                            padding: EdgeInsets.all(2.5),
                             child: TextField(
                               controller: pickupController,
                               decoration: InputDecoration(
                                 hintText: 'Pickup Location',
-                                fillColor: BrandColors.colorLightGrayFair,
+                                fillColor: Colors.white,
                                 filled: true,
                                 border: InputBorder.none,
                                 isDense: true,
@@ -91,23 +93,23 @@ class _SearchPageState extends State<SearchPage> {
 
                   Row(
                     children: <Widget>[
-                      Image.asset('images/desticon.png',height: 16, width: 16),
+                      Icon(FontAwesomeIcons.mapMarker, size:18, color: BrandColors.colorMustard),
 
                       SizedBox(width: 18,),
 
                       Expanded(
                         child: Container(
                           decoration: BoxDecoration(
-                            color: BrandColors.colorLightGrayFair,
+                            color: Colors.white,
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: Padding(
-                            padding: EdgeInsets.all(2.0),
+                            padding: EdgeInsets.all(2.5),
                             child: TextField(
                               controller: destinationController,
                               decoration: InputDecoration(
                                 hintText: 'Where to ?',
-                                fillColor: BrandColors.colorLightGrayFair,
+                                fillColor: Colors.white,
                                 filled: true,
                                 border: InputBorder.none,
                                 isDense: true,

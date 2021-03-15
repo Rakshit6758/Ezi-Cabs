@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      initialRoute: MainPage.id,
+      initialRoute: RegistrationPage.id,
       routes:{
         RegistrationPage.id: (context) => RegistrationPage(),
         LoginPage.id: (context) => LoginPage(),

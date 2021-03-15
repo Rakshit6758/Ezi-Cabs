@@ -4,8 +4,11 @@ import 'package:ezi_cabs/brand_colors.dart';
 import 'package:ezi_cabs/screens/searchpage.dart';
 import 'package:ezi_cabs/styles/styles.dart';
 import 'package:ezi_cabs/widgets/BrandDivider.dart';
+import 'package:ezi_cabs/widgets/TaxiButton.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:outline_material_icons/outline_material_icons.dart';
@@ -68,7 +71,7 @@ class _MainPageState extends State<MainPage> {
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          Text('Rakshit Kapoor', style: TextStyle(fontSize: 20, fontFamily: 'Brand-Bold',color: BrandColors.colorMustard),),
+                          Text("Rakshit Kapoor", style: TextStyle(fontSize: 20, fontFamily: 'Brand-Bold',color: BrandColors.colorMustard),),
                           SizedBox(height: 5,),
                           Text('View Profile', style: TextStyle(color: Colors.white),),
                         ],
@@ -117,7 +120,7 @@ class _MainPageState extends State<MainPage> {
         children: <Widget>[
           GoogleMap(
             padding: EdgeInsets.only(bottom: mapBottomPadding),
-            mapType: MapType.normal,
+            mapType: MapType.normal ,
             myLocationButtonEnabled: true,
             initialCameraPosition: _kGooglePlex,
             myLocationEnabled: true,
@@ -289,6 +292,91 @@ class _MainPageState extends State<MainPage> {
                   ],
                 ),
               ),
+            ),
+          ),
+
+          //Ride Datails
+          Positioned(
+            left: 0,
+            right:0,
+            bottom: 0,
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.black,
+                borderRadius: BorderRadius.only(topLeft: Radius.circular(15), topRight: Radius.circular((15))),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.black26,
+                        blurRadius: 5.0,
+                        spreadRadius: 0.5,
+                        offset: Offset(
+                          0.7,
+                          0.7,
+                        )
+                    )
+                  ],
+              ),
+              height:0,
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: 30),
+                child: Column(
+                  children: <Widget>[
+                    Container(
+                      width: double.infinity,
+                      color: Colors.white,
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 16),
+                        child: Row(
+                          children: <Widget>[
+                            Image.asset('images/taxi.png', height:70, width: 70,),
+                            SizedBox(width: 16,),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Text('Taxi', style: TextStyle(fontSize: 18, fontFamily: 'Brand-Bold'),),
+                                Text('14Km', style: TextStyle(fontSize: 16, color: BrandColors.colorTextLight),),
+                              ]
+                            ),
+                            Expanded(child: Container()),
+                            Text('\$13', style: TextStyle(fontSize: 18, fontFamily: 'Brand-Bold'),),
+                          ],
+                        ),
+                      ),
+                    ),
+
+                    SizedBox(height: 22,),
+
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 16),
+                      child: Row(
+                        children: <Widget>[
+
+                          Icon(FontAwesomeIcons.moneyBillAlt, size:18, color: Colors.white,),
+                          SizedBox(width: 16,),
+                          Text('Cash', style: TextStyle(color: Colors.white),),
+                          SizedBox(width: 5,),
+                          Icon(Icons.keyboard_arrow_down, color: Colors.white, size: 16),
+
+                        ],
+                      ),
+                    ),
+
+                    SizedBox(height: 22,),
+
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 16),
+                      child: TaxiButton(
+                        title: 'REQUEST CAB',
+                        color: BrandColors.colorMustard,
+                        onPressed: (){
+
+                        },
+                      ),
+                    )
+                  ],
+                ),
+              ),
+
             ),
           )
 
