@@ -1,6 +1,6 @@
 # EZI Cabs
 
-<img src="images\Ezi.png" alt="ezi cabs logo">
+<center><img src="images\Ezi.png" alt="ezi cabs logo"></center>
 
 
 ## ABSTRACT
@@ -11,3 +11,4 @@ Keywords:
 <li>Ride-Hailing
 <li>Rider
 <li>Driver
+</ul>
