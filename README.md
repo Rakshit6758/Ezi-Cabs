@@ -38,8 +38,8 @@ In ride-hailing, the drivers offer their services for a profit, and riders canno
 <br>
 
 ## UI Design
-<img src="ui_images\Screenshot1.png" alt="ui screenshot">
-<img align="right" src="ui_images\Screenshot2.png" alt="ui screenshot">
+<img src="ui_images\Screenshot1.png" alt="ui screenshot" height="200" width="100">
+<img align="right" src="ui_images\Screenshot2.png" alt="ui screenshot" height="200" width="100">
 
 
 
