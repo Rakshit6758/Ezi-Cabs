@@ -1,7 +1,7 @@
 # EZI Cabs
 
 <p align="center">
-<center><img src="images\Ezi.png" alt="ezi cabs logo"></center>
+<img src="images\Ezi.png" alt="ezi cabs logo">
 </p>
 
 ## ABSTRACT
