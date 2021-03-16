@@ -37,4 +37,10 @@ In ride-hailing, the drivers offer their services for a profit, and riders canno
 <b>To make a conveyance finder app using open-source mobile UI framework flutter with OOPS concepts.</b>
 <br>
 
+## UI Design
+<img src="ui_images\Screenshot1.png" alt="ui screenshot">
+<img align="right" src="ui_images\Screenshot2.png" alt="ui screenshot">
+
+
+
 
